@@ -27,6 +27,10 @@ mongoose.connect(config.DB_URI).then(async () => {
 
 const app = express();
 
+// Add this line to serve static files from the 'assets' directory
+app.use('/assets', express.static('D:/angular/Rental/tm2-app/src/assets'));
+
+
 
 app.use('/api/v1/tmers', tmerRoutes);
 

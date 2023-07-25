@@ -1,5 +1,5 @@
 export class Tmer{
-  id:string | undefined;
+  _id:string | undefined;
   title:string | undefined;
   city: string | undefined;
   street:string | undefined;

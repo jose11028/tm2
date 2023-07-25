@@ -6,8 +6,10 @@ import { TmersComponent } from './tmers.component';
 
 import { CommonModule } from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { TmerService } from './shared/tmer.service';
 import { TmerDetailComponent } from './tmer-detail/tmer-detail.component';
+import { UppercasePipe } from '../common/pipes/uppercase.pipe';
 
 const routes: Routes = [
   {path:"tmers",
@@ -27,11 +29,13 @@ const routes: Routes = [
     TmerListComponent,
     TmerListItemComponent,
     TmersComponent,
-    TmerDetailComponent
+    TmerDetailComponent,
+    UppercasePipe
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule
   ],
   providers: [TmerService]
 })
