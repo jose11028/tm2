@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
 import { Observable } from 'rxjs';
 import { Tmer } from './tmer.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class TmerService {
 
-  private tmers: Tmer[] = [
+  constructor(private http:HttpClient) {}
+
+  /* private tmers: Tmer[] = [
     {
       id:"1",
       title:"StellarVibes",
@@ -63,11 +66,9 @@ export class TmerService {
       shared: false,
       createdAt: "24/12/2022"
 
-    }
+    }]; */
 
-  ];
-
-  public getTmerById(tmerId:string): Observable<Tmer> {
+  /* public getTmerById(tmerId:string): Observable<Tmer> {
     return new Observable<Tmer>((observer) => {
       setTimeout(() =>{
         const foundTmer = this.tmers.find((rental) => {
@@ -76,11 +77,15 @@ export class TmerService {
         observer.next(foundTmer);
       },500);
     });
+  }  */
+
+  public getTmerById(tmerId:string): Observable<any> {
+    return this.http.get('/api/v1/tmers/' + tmerId);
   }
 
 
 
-  public getTmers(): Observable<Tmer[]> {
+/*   public getTmers(): Observable<Tmer[]> {
 
     return  new Observable<Tmer[]>((observer) => {
       setTimeout(() => {
@@ -88,11 +93,17 @@ export class TmerService {
         observer.next(this.tmers);
       },1000);
    
-    });
+    }); */
+
+    public getTmers(): Observable<any> {
+      return this.http.get('/api/v1/tmers');
+
+    }
+
 
 
   }
 
 
 
-}
+

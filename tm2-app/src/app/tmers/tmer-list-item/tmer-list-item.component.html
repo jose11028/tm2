@@ -1,9 +1,9 @@
 <!--This is child component from tmer-list.component-->
-<a [routerLink]="['/tmers', tmer.id]">
+<a [routerLink]="['/tmers', tmer._id]">
   <div class="card bwm-card">
-    <img class="card-img-top" src="http://via.placeholder.com/350x250" alt="">
+    <img class="card-img-top" src="{{tmer.image}}" alt="">
     <div class="card-block">
-      <h6 class="card-subtitle">T~mer {{tmer.category}} &#183; {{tmer.city}}</h6>
+      <h6 class="card-subtitle {{tmer.category}}"><!--{{tmer.shared ? 'Available' : 'No available'}}--> {{tmer.category}} &#183; {{tmer.city}}</h6>
       <h4 class="card-title">{{tmer.title}}</h4>
       <p class="card-text">${{tmer.dailyRate}} per Session &#183; Free Cancelation</p>
 
