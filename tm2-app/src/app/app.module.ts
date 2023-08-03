@@ -10,6 +10,7 @@ import { TmersComponent } from './tmers/tmers.component';   //this is RentalComp
 import { TmerModule } from './tmers/tmer.module';
 
 
+
 const routes: Routes = [
   {path:"", redirectTo:'/tmers', pathMatch: 'full'}
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent
+    
 
 
   ],
