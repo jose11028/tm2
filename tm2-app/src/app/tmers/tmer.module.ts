@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { TmerListComponent } from './tmer-list/tmer-list.component';
 import { TmerListItemComponent } from './tmer-list-item/tmer-list-item.component';
 import { TmersComponent } from './tmers.component';
+import { NgPipesModule } from 'ngx-pipes';
+
+import { MapModule } from '../common/map/map.module';
 
 import { CommonModule } from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
@@ -35,7 +38,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    HttpClientModule
+    HttpClientModule,
+    MapModule,
+    NgPipesModule
+    
+   
   ],
   providers: [TmerService]
 })
