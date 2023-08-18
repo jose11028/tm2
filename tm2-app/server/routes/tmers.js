@@ -3,6 +3,13 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Tmer = require('../models/tmer');
 
+const UserCtrl = require('../controllers/user');
+
+
+router.get('/secret', UserCtrl.authMiddleware, function(req,res) {
+  res.json({"secret": true});
+});
+
 
 /* router.get('', async function(req,res) {
   Tmer.find({}, function(err, foundTmers) {
