@@ -1,4 +1,5 @@
 const Tmer = require('./models/tmer');
+const User = require('./models/user'); 
 
 class FakeDb {
   constructor() {
@@ -40,28 +41,40 @@ class FakeDb {
         description: "Travel and Adventure.",
         dailyRate: 23
       }]
+
+      this.users = [{
+        username: "Test User",
+        email:"test@gmail.com",
+        password: "testtest"
+      }];
+
   }
 
   async cleanDb() {
     //with away, the rest of the code won't be executed until we finsih to delete the database
+    await User.removeAllListeners({});
     await Tmer.deleteMany({});
   }
 
-  pushTmersToDb() {
+  pushDataToDb() {
+    const user = new User(this.users[0]);
+
     this.tmers.forEach((tmer) => {
       //the Tmer(tmer) model is defined in model/tmer.js this is the name we gave to the scheme.
       /* In summary, the pushTmersToDb() function loops through the
       this.tmers array,creates a new instance of the Tmer model for
       each object, and saves each instance to the MongoDB database. */
       const newTmer = new Tmer(tmer);
-
+      newTmer.user = user;
+      user.tmers.push(newTmer);
       newTmer.save();
-    })
+    });
+    user.save();
   }
 
   async seedDb() {
     await this.cleanDb();
-    await this.pushTmersToDb();
+    await this.pushDataToDb();
   }
 
 }

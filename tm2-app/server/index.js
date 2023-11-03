@@ -1,11 +1,14 @@
 const express = require('express');
 
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const config = require('./config/dev');
 const Tmer = require('./models/tmer');
 const FakeDb = require('./fake-db');
 
-const tmerRoutes = require('./routes/tmers');
+//routes
+const tmerRoutes = require('./routes/tmers'),
+      userRoutes = require('./routes/users');
 
 mongoose.connect(config.DB_URI).then(async () => {
 
@@ -26,13 +29,18 @@ mongoose.connect(config.DB_URI).then(async () => {
 }); */
 
 const app = express();
+//using midelware body-parser
+app.use(bodyParser.json());
+
+
 
 // Add this line to serve static files from the 'assets' directory
 app.use('/assets', express.static('D:/angular/Rental/tm2-app/src/assets'));
 
 
-
+//Register the routes
 app.use('/api/v1/tmers', tmerRoutes);
+app.use('/api/v1/users', userRoutes);
 
 //process.env is an object in Node.js that contains the user environment.
 // In this case, process.env.PORT is attempting to retrieve the value of the PORT
